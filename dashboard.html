@@ -6,8 +6,60 @@
 </head>
 <body>
 
-  <h1>Welcome Admin 👑</h1>
-  <p>Yahan se tum product add kar sakte ho</p>
+  <h1>Admin Panel – Add Product</h1>
+
+  <form id="productForm">
+    <input type="text" id="name" placeholder="Product Name" required><br><br>
+    <input type="number" id="price" placeholder="Price" required><br><br>
+    <input type="text" id="image" placeholder="Image URL" required><br><br>
+
+    <button type="submit">Add Product</button>
+  </form>
+
+  <hr>
+
+  <h2>Uploaded Products</h2>
+  <div id="productList"></div>
+
+  <script>
+    const form = document.getElementById("productForm");
+    const productList = document.getElementById("productList");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // VERY IMPORTANT
+
+      const name = document.getElementById("name").value;
+      const price = document.getElementById("price").value;
+      const image = document.getElementById("image").value;
+
+      const product = { name, price, image };
+
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+      products.push(product);
+      localStorage.setItem("products", JSON.stringify(products));
+
+      form.reset();
+      showProducts();
+      alert("Product Added Successfully ✅");
+    });
+
+    function showProducts() {
+      productList.innerHTML = "";
+      let products = JSON.parse(localStorage.getItem("products")) || [];
+
+      products.forEach((p) => {
+        productList.innerHTML += `
+          <div style="border:1px solid #000; padding:10px; margin:10px;">
+            <h3>${p.name}</h3>
+            <p>₹${p.price}</p>
+            <img src="${p.image}" width="100">
+          </div>
+        `;
+      });
+    }
+
+    showProducts();
+  </script>
 
 </body>
 </html>
