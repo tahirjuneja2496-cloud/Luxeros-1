@@ -1,7 +1,6 @@
 body {
-  font-family: Arial;
-  text-align: center;
-  margin-top: 80px;
+  <h1>Welcome to Luxeros</h1>
+<p>Products coming soon</p>
 }
 input {
   padding: 10px;
@@ -10,3 +9,4 @@ input {
 button {
   padding: 10px 20px;
 }
+<link rel="stylesheet" href="style.css">
