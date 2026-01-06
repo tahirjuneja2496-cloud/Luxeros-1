@@ -1,35 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Luxeros Store</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      padding-top: 50px;
-      background: #f5f5f5;
-    }
-    button {
-      padding: 12px 20px;
-      font-size: 18px;
-      background: black;
-      color: white;
-      border: none;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
+<script>
+  const products = JSON.parse(localStorage.getItem("products")) || [];
+  const container = document.getElementById("products");
 
-  <h1>Luxeros Store Live ✅</h1>
-  <p>Website successfully deployed on GitHub Pages</p>
-
-  <br><br>
-
-  <a href="admin.html">
-    <button>Admin Login</button>
-  </a>
-
-</body>
-</html>
+  products.forEach(p => {
+    container.innerHTML += `
+      <div>
+        <h3>${p.name}</h3>
+        <p>₹${p.price}</p>
+        <img src="${p.image}" width="100">
+      </div>
+    `;
+  });
+</script>
